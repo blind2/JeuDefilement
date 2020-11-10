@@ -1,0 +1,66 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/Joueur/Run__005.png" type="Texture" id=1]
+[ext_resource path="res://assets/Joueur/Run__004.png" type="Texture" id=2]
+[ext_resource path="res://assets/Joueur/Run__008.png" type="Texture" id=3]
+[ext_resource path="res://assets/Joueur/Run__007.png" type="Texture" id=4]
+[ext_resource path="res://assets/Joueur/Run__003.png" type="Texture" id=5]
+[ext_resource path="res://assets/Joueur/Run__000.png" type="Texture" id=6]
+[ext_resource path="res://assets/Joueur/run04.png" type="Texture" id=7]
+[ext_resource path="res://assets/Joueur/run03.png" type="Texture" id=8]
+[ext_resource path="res://scripts/joueur.gd" type="Script" id=9]
+[ext_resource path="res://assets/Joueur/run05.png" type="Texture" id=10]
+[ext_resource path="res://assets/Joueur/run01.png" type="Texture" id=11]
+[ext_resource path="res://assets/Joueur/run02.png" type="Texture" id=12]
+[ext_resource path="res://assets/vie.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "droite_animation",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "gauche_animation",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 18.2364, 28.7301 )
+
+[node name="Joueur" type="KinematicBody2D"]
+position = Vector2( -0.332169, 0.664333 )
+script = ExtResource( 9 )
+
+[node name="vie" type="Sprite" parent="."]
+position = Vector2( 400.332, -264.664 )
+scale = Vector2( 0.253167, 0.244249 )
+texture = ExtResource( 13 )
+
+[node name="vie2" type="Sprite" parent="."]
+position = Vector2( 440.332, -264.664 )
+scale = Vector2( 0.253167, 0.244249 )
+texture = ExtResource( 13 )
+
+[node name="vie3" type="Sprite" parent="."]
+position = Vector2( 480.332, -264.664 )
+scale = Vector2( 0.253167, 0.244249 )
+texture = ExtResource( 13 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 5.52484, -2.45549 )
+scale = Vector2( 0.157833, 0.147553 )
+frames = SubResource( 1 )
+animation = "gauche_animation"
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 5.57775, -2.84355 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -1.07379, 13.08 )
+current = true

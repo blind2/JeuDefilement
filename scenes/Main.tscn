@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/background.jpg" type="Texture" id=1]
+[ext_resource path="res://scenes/Joueur.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Plateforme.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/zone_de_mort.gd" type="Script" id=4]
+[ext_resource path="res://scenes/PathPlateforme.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/door.png" type="Texture" id=6]
+[ext_resource path="res://scripts/niveau_terminer.gd" type="Script" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32.6494, 56.7434 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2493.61, 37.305 )
+
+[node name="Main" type="Node2D"]
+
+[node name="backgound" type="Sprite" parent="."]
+position = Vector2( 1950.75, 113.062 )
+scale = Vector2( 2.76031, 1.25645 )
+texture = ExtResource( 1 )
+
+[node name="NiveauTerminer" type="Area2D" parent="."]
+position = Vector2( 3619.84, 168.935 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NiveauTerminer"]
+position = Vector2( 49.3301, -19.9708 )
+shape = SubResource( 1 )
+
+[node name="door" type="Sprite" parent="NiveauTerminer"]
+position = Vector2( 48.6025, -9.36615 )
+scale = Vector2( 0.187709, 0.185271 )
+texture = ExtResource( 6 )
+
+[node name="ZoneDeMort" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoneDeMort"]
+position = Vector2( 1900.56, 514.82 )
+shape = SubResource( 2 )
+
+[node name="Respawn" type="Position2D" parent="ZoneDeMort"]
+position = Vector2( 81.258, 182.279 )
+
+[node name="Plateforme2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 384.421, 137.81 )
+string = "verticale"
+
+[node name="Plateforme9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1157.15, 133.493 )
+string = "verticale"
+
+[node name="Plateforme3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 639.475, 135.202 )
+string = "horizontale"
+
+[node name="Plateforme12" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2127.72, 334.373 )
+string = "horizontale"
+
+[node name="Plateforme4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1987.77, 81.3457 )
+
+[node name="Plateforme" parent="." instance=ExtResource( 3 )]
+position = Vector2( 99.5769, 237.652 )
+
+[node name="Plateforme11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2803.87, 348.302 )
+
+[node name="Plateforme7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2554.49, -22.4295 )
+
+[node name="Plateforme8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 3614.36, 222.435 )
+
+[node name="Plateforme10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2732.73, 88.4485 )
+
+[node name="Plateforme5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 872.59, 327.391 )
+
+[node name="Plateforme6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2291.44, -60.5614 )
+string = "verticale"
+
+[node name="PathPlatforme" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1420.95, 71.3198 )
+
+[node name="PathPlatforme2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3032.82, 119.27 )
+
+[node name="Joueur" parent="." instance=ExtResource( 2 )]
+position = Vector2( 79.2151, 166.221 )
+[connection signal="body_entered" from="NiveauTerminer" to="NiveauTerminer" method="_on_NiveauTerminer_body_entered"]
+[connection signal="body_entered" from="ZoneDeMort" to="ZoneDeMort" method="_on_ZoneDeMort_body_entered"]
